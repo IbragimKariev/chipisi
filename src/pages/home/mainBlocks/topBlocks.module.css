@@ -1,0 +1,45 @@
+.topBlocks{
+display: flex;
+justify-content: space-between;
+}
+.topBlockItem{
+   height: 80px;
+   width: 280px;
+   background: #ffffff;
+   display: flex;
+}
+.icon{
+    height: 80px;
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 34px;
+}
+.topBlockItem:nth-child(1) .icon{
+    background: rgba(241, 84, 51, 1);
+}
+.topBlockItem:nth-child(2) .icon{
+    background: rgba(237, 139, 12, 1);
+}
+.topBlockItem:nth-child(3) .icon{
+    background: rgba(104, 195, 2, 1);
+}
+.topBlockItem:nth-child(4) .icon{
+    background: rgba(24, 176, 161, 1);
+}
+.inf{
+    padding: 12px 20px;
+}
+.inf span{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+.inf p{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    margin-top: 6px;
+}
