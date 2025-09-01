@@ -1,19 +1,17 @@
-import { ASKAR_URL, DEPL_URL, TEST_URL } from "./constans";
+import { DEPL_URL, TEST_URL } from "./constans";
 import dayjs from "dayjs";
 
 
-export function setUrlSource(source: 'deploy' | 'askar' | 'test') {
+export function setUrlSource(source: 'deploy' | 'test') {
   switch (source) {
     case 'deploy':
       return DEPL_URL;
-    case 'askar':
-      return ASKAR_URL;
     case 'test':
       return TEST_URL;
   }
 }
 
-export let mode: 'test' | 'deploy' | 'askar' = 'test';
+export let mode: 'test' | 'deploy' = 'test';
 
 export function deleteById(array: any[], id: any) {
   let idx = array.findIndex((a) => a.Id === id);

@@ -2,45 +2,46 @@
 import { ChangePassword } from "../../../models/changePswd";
 import { User } from "../../../models/user";
 import { ResponseData } from "../../../models/utils/responseData";
+import { ResponseItems } from "../../../models/utils/responseItems";
 import { mainApi } from "../api";
 
 export const usersApi = mainApi.injectEndpoints({
   endpoints: (builder) => ({
-    getAllUsers: builder.query<ResponseData<User[]>, void>({
+    getAllUsers: builder.query<ResponseItems<User[]>, void>({
       query: () => ({
-        url: "/ap/user-get-list-all",
+        url: "/api/v1/users",
         method: "GET",
       }),
     }),
     getActiveUsers: builder.query<ResponseData<User[]>, void>({
       query: () => ({
-        url: "/ap/user-get-list-active",
+        url: "/api/v1/users",
         method: "GET",
       })
     }),
     getDeletedUsers: builder.query<ResponseData<User[]>, void>({
       query: () => ({
-        url: "/ap/user-get-list-deleted",
+        url: "/api/v1/users",
         method: "GET",
       }),
     }),
     addUser: builder.mutation<ResponseData<User>, User>({
       query: (body) => ({
-        url: `ap/add-user`,
+        url: `/api/v1/users`,
         method: "POST",
         body: JSON.stringify(body)
       })
     }),
-    editUser: builder.mutation<ResponseData<User>, User>({
+    editUser: builder.mutation<ResponseItems<User>, User>({
       query: (body) => ({
-        url: `ap/edit-user`,
+        url: `/api/v1/users/${body.id}`,
         method: 'PUT',
         body: JSON.stringify(body)
       })
     }),
     deleteUser: builder.mutation<ResponseData<User>, number>({
       query: (userId) => ({
-        url: `ap/delete-user?userId=${userId}`,
+        url: `/api/v1/users?userId=${userId}`,
         method: 'DELETE',
       })
     }),

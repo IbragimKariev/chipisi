@@ -25,91 +25,54 @@ export const appRoutes: AppRouteConfig[] = [
     text: 'info.main',
     icon: <HomeOutlined />,
   },
+
   {
-    key: 'appeals',
-    path: '/appeals',
-    text: 'info.appeals.index',
-    icon: <WechatOutlined />,
-  },
-  {
-    key: 'employees',
-    path: '/employees',
-    text: 'info.employees.index',
-    icon: <TeamOutlined />,
-  },
-  {
-    key: 'positions',
-    path: '/positions',
-    text: 'info.positions.index',
-    icon: <SolutionOutlined />,
-  },
-  {
-    key: 'categories',
-    path: '/categories',
-    text: 'info.categories',
-    icon: <SolutionOutlined />,
-  },
-  {
-    key: 'objectWorks',
-    path: '/objectWorks',
-    text: 'info.objectsOfWork.index',
-    icon: <HeatMapOutlined />,
-  },
-  {
-    key: 'handbooks',
-    path: '/handbooks',
-    text: 'info.handbooks',
+    key: 'Catalog',
+    path: '/catalog',
+    text: 'Каталог',
     icon: <HeatMapOutlined />,
     children: [
       {
-        key: 'regions',
-        path: '/handbooks/regions',
-        text: 'info.regions.index',
+        key: 'productsList',
+        path: '/catalog/productsList',
+        text: 'Продукты',
       },
       {
-        key: 'governments',
+        key: 'Catalog-2',
         path: '/governments',
-        text: 'info.governments.index',
+        text: 'Catalog-2',
       },
-      {
-        key: 'category1',
-        path: '/handbooks/categoryOne',
-        text: 'info.categoriesOne.index',
-      },
-      {
-        key: 'category2',
-        path: '/handbooks/categoryTwo',
-        text: 'info.categoriesTwo.index',
-      },
-      {
-        key: 'category3',
-        path: '/handbooks/categoryThree',
-        text: 'info.categoriesThree.index',
-      },
+
     ]
   },
+
   {
-    key: 'admin',
-    path: '/admin',
-    text: 'info.adminPanel',
-    icon: <LinkOutlined />,
-    children: [
-      {
-        key: 'users',
-        path: '/users',
-        text: 'info.users.index',
-      },
-      // {
-      //   key: 'roles',
-      //   path: '/roles',
-      //   text: 'roles',
-      // },
-    ],
+   key: 'companies',
+    path: '/companies',
+    text: 'Компании',
+    icon: <SnippetsOutlined />,
   },
   {
-    key: 'reports',
-    path: '/reports',
-    text: 'info.reports',
+   key: 'orders',
+    path: '/orders',
+    text: 'Заказы',
+    icon: <SnippetsOutlined />,
+  },
+  {
+   key: 'roles',
+    path: '/roles',
+    text: 'Роли',
+    icon: <SnippetsOutlined />,
+  },
+  {
+   key: 'system',
+    path: '/system',
+    text: 'Система',
+    icon: <SnippetsOutlined />,
+  },
+   {key: 'Users',
+    path: '/users',
+    text: 'Пользователи',
     icon: <SnippetsOutlined />,
   },
 ];

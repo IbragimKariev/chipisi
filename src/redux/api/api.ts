@@ -35,6 +35,7 @@ const baseQueryWithReauth: BaseQueryFn<
     const rootState = api.getState() as RootState;
     await mutex.waitForUnlock();
     let result = await baseQuery(args, api, extraOptions);
+    console.log(result.error)
     if (!rootState.authSlice.isLoggedIn) {
         // api.dispatch(authSlice.actions.clearAuthCredentials());
         const release = await mutex.acquire();
@@ -50,6 +51,9 @@ const baseQueryWithReauth: BaseQueryFn<
 
     if (result.error && result.error.status === 'FETCH_ERROR') {
         message.error('Проблема сети - Убедитесь что вы подключены к сети.');
+    }
+    if (result.error?.data === null && result.error.status === 405) {
+        message.error('Проблема в запросе');
     }
     if (result.error && result.error.status === 401) {
         // try to get a new token

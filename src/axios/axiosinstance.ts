@@ -1,8 +1,6 @@
 import { message } from "antd";
 import axios, { AxiosRequestConfig } from "axios";
 import { TEST_URL } from "../constans";
-// import { rootStore } from "../redux/root/root.store";
-// import { authSlice } from "../redux/slices/authSlice";
 import { mode, setUrlSource, timeDelay } from "../utils";
 
 const axiosApiInstance = axios.create({
@@ -37,9 +35,7 @@ axiosApiInstance.interceptors.response.use(undefined, async (error) => {
         "Bearer " + newAccessToken;
       return axiosApiInstance(originalRequest);
     } catch (error) {
-      const token = window.localStorage.getItem("token");
-      //if (token) message.error("Не удалось авторизоваться автоматически");
-      // rootStore && rootStore.dispatch(authSlice.actions.clearAuthCredentials());
+      // const token = window.localStorage.getItem("token");
     }
   }
 

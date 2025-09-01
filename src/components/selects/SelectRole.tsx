@@ -18,20 +18,14 @@ const SelectRole = (props: IProps) => {
   );
   const { data, isLoading } = useGetActiveRolesQuery();
   useEffect(() => {
-    const serviceTypes = data?.result;
+    const serviceTypes = data;
     if (serviceTypes === undefined || serviceTypes === null)
     setRolesOptions([]);
     else {
       let options = [];
-      if(props.parentNull){
-        options = serviceTypes.filter(a => a.parentId === null).map((a) => {
-          return { label: a.nameRu, value: a.id };
+        options = serviceTypes.map((a: any) => {
+          return { label: a.name, value: a.id };
         });
-      }else{
-        options = serviceTypes.map((a) => {
-          return { label: a.nameRu, value: a.id };
-        });
-      }
       
       setRolesOptions(options);
     }

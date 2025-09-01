@@ -86,9 +86,9 @@ export const UserDropDown = () => {
                     <Space>
                         <div>
                             <p className="username">
-                                {user.name} {user.lastName} {user.secondName}
+                                {user?.name} 
                                 <br />
-                                <span className='roleId'>{getCookie("i18next") === 'ky' ? user.role?.nameKy : user.role?.nameRu}</span>
+                                {/* <span className='roleId'>{getCookie("i18next") === 'ky' ? user?.role?.nameKy : user?.role?.nameRu}</span> */}
                             </p>
 
                         </div>

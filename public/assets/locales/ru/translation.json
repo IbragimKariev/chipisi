@@ -102,6 +102,7 @@
         "name": "Имя",
         "patronymic": "Отчество",
         "pin": "ПИН",
+        "company": "Компания",
         "password": "Пароль",
         "confirmPassword": "Подтвердить пароль",
         "birthday": "Дата рождения",

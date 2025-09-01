@@ -31,16 +31,16 @@ export const RoleModal = (props: IProps) => {
   function setFieldsFromEntity(): void {
     form.setFields([
       { name: FormField.alias, value: props.role.alias },
-      { name: FormField.nameKy, value: props.role.nameKy },
-      { name: FormField.nameRu, value: props.role.nameRu },
+      { name: FormField.nameKy, value: props.role.name },
+      { name: FormField.nameRu, value: props.role.name },
     ]);
   }
 
   function setEntityFromFields(): Role {
     let role = _.cloneDeep(props.role);
     role.alias = form.getFieldValue(FormField.alias);
-    role.nameKy = form.getFieldValue(FormField.nameKy);
-    role.nameRu = form.getFieldValue(FormField.nameRu);
+    role.name = form.getFieldValue(FormField.nameKy);
+    role.name = form.getFieldValue(FormField.nameRu);
     return role;
   }
 

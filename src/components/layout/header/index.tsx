@@ -63,8 +63,8 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar, themeMode, togg
           unCheckedChildren="☀️"
         />
         <UserMenu
-          fullName={`${user.secondName} ${user.name?.[0] ?? ''}. ${user.lastName?.[0] ?? ''}.`.trim()}
-          role={user.role?.nameRu ?? 'Не указано'}
+          fullName={`${user?.name?.[0] ?? ''}`.trim()}
+          role={'Не указано'}
           onLogout={handleLogout}
         />
       </div>

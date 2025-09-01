@@ -1,4 +1,3 @@
-import { Government } from "./government";
 
 export class Position {
   id: number = 0
@@ -7,7 +6,7 @@ export class Position {
   nameKy: string | null = null
   governmentId: number | null = null
 
-  government: Government | null = null
+  // government: Government | null = null
 
   constructor(init?: Partial<Position>){
     if(init){

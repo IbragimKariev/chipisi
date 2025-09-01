@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useAddRoleMethodsMutation, useAddRoleMutation, useDeleteRoleMethodsMutation, useDeleteRoleMutation, useEditRoleMutation, useGetActiveRolesQuery, useGetDeletedRolesQuery } from "../../redux/api/endpoints/rolesApi";
+import { useAddRoleMutation,  useDeleteRoleMutation, useEditRoleMutation, useGetActiveRolesQuery, useGetDeletedRolesQuery } from "../../redux/api/endpoints/rolesApi";
 import { Role } from "../../models/role";
 import { EntRoleMethods } from "../../models/roleMethods";
 import { message } from "antd";
@@ -10,8 +10,6 @@ const useRoles = (modal: any) => {
     const [addRole] = useAddRoleMutation();
     const [editRole] = useEditRoleMutation();
     const [deleteRole] = useDeleteRoleMutation()
-    const [addRoleMethods] = useAddRoleMethodsMutation();
-    const [deleteRoleMethods] = useDeleteRoleMethodsMutation();
     const { data: allRoles, refetch, error: responseError } = useGetActiveRolesQuery();
     const { data: deletedRoles} = useGetDeletedRolesQuery();
     async function onDeleteRole(user: Role) {
@@ -91,47 +89,8 @@ const useRoles = (modal: any) => {
             return false;
         }
     };
-    async function onAddRoleMethods(roleMethods: EntRoleMethods): Promise<boolean> {
-        try {
-          let status: boolean = false;
-          await addRoleMethods(roleMethods).then((response: any) => {
-            if (response.error !== undefined && response.error.status === 400) {
-              throw new Error(response.error.data.message);
-            }
-            if (response.data.success) {
-              status = true;
-              modal.success({ title: t('success'), content: t('successAdd') });
-            }
-          }).catch((error) => {
-            modal.error({ title: t('error'), content: String(error.message) });
-          });
-          return status;
-        } catch (error: any) {
-          modal.error({ title: t('error'), content: String(error.message) });
-          return false;
-        }
-      };
-      async function onDeleteRoleMethods(roleMethods: EntRoleMethods): Promise<boolean> {
-          try {
-            let status: boolean = false;
-            await deleteRoleMethods(roleMethods).then((response: any) => {
-              if (response.error !== undefined && response.error.status === 400) {
-                throw new Error(response.error.data.message);
-              }
-              if (response.data.success) {
-                status = true;
-                modal.success({ title: t('success'), content: t('successAdd') });
-              }
-            }).catch((error) => {
-              modal.error({ title: t('error'), content: String(error.message) });
-            });
-            return status;
-          } catch (error: any) {
-            modal.error({ title: t('error'), content: String(error.message) });
-            return false;
-          }
-        }
-    return { onAddRole, onDeleteRole, onUpdateRole, allRoles, deletedRoles, onAddRoleMethods, onDeleteRoleMethods, responseError}
+
+    return { onAddRole, onDeleteRole, onUpdateRole, allRoles, deletedRoles, responseError}
 
 }
 export { useRoles }

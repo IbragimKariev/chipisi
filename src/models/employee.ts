@@ -1,5 +1,4 @@
 
-import { Government } from "./government";
 import { Position } from "./position";
 import { Role } from "./role";
 
@@ -15,7 +14,7 @@ export class Employee {
   positionId: number | null = null;
   roleId: number | null = null;
 
-  government: Government | null = null;
+  // government: Government | null = null;
   position: Position | null = null;
   role: Role | null = null;
 

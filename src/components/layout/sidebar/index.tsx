@@ -112,7 +112,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onClose, themeMode 
     <StyledSider collapsed={collapsed} trigger={null} width={220}>
       <div className="logo">
         <img src="/logo.png" alt="logo" />
-        {!collapsed && <p>УПР</p>}
+        {!collapsed && <p>Приложение 1</p>}
       </div>
       <div className="menu-wrapper">
         <Menu

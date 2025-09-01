@@ -1,17 +1,14 @@
 import { useTranslation } from "react-i18next";
-import { User } from "../../models/user";
-import { useAddUserMutation, useChangeUserPasswordMutation, useDeleteUserMutation, useEditUserMutation, useGetActiveUsersQuery, useGetDeletedUsersQuery } from "../../redux/api/userApis/usersApi";
-import { ChangePassword } from "../../models/changePswd";
-import { message } from "antd";
+import { useAddCompanyMutation, useDeleteCompanyMutation, useEditCompanyMutation } from "../../redux/api/endpoints/companyApi";
+import { Company } from "../../models/company";
 
-const useUsers = (modal: any, refresh?: () => void) => {
+const useCompany = (modal: any, refresh?: () => void) => {
     const { t } = useTranslation()
     const { confirm } = modal;
-    const [addUser] = useAddUserMutation();
-    const [editUser] = useEditUserMutation();
-    const [deleteUser] = useDeleteUserMutation()
-    const [changePasswordUser] = useChangeUserPasswordMutation();
-    async function onDeleteUser(user: User) { 
+    const [addItem] = useAddCompanyMutation();
+    const [editItem] = useEditCompanyMutation();
+    const [deleteItem] = useDeleteCompanyMutation()
+    async function onDeleteItem(item: Company) { 
         try {
             let status: boolean = false;
             confirm({
@@ -20,7 +17,7 @@ const useUsers = (modal: any, refresh?: () => void) => {
                 okText: t('yes'),
                 cancelText: t("no"),
                 onOk() {
-                    deleteUser(user.id).then((response: any) => {
+                    deleteItem(item.id).then((response: any) => {
                         if (response.error !== undefined && response.error.status === 400) {
                             status = false;
                             throw new Error(response.error.data.message);
@@ -44,11 +41,11 @@ const useUsers = (modal: any, refresh?: () => void) => {
             return false;
         }
     };
-    async function onUpdateUser(editedUser: User): Promise<boolean> {
+    async function onUpdateItem(editedItem: Company): Promise<boolean> {
         try {
             let status: boolean = false;
-            await editUser(editedUser).then((response: any) => {
-                if (response.data !== undefined && response.error.status === 400) {
+            await editItem(editedItem).then((response: any) => {
+                if (response.error !== undefined && response.error.status === 400) {
                     throw new Error(response.error.data.message);
                 }
                 if (response.data) {
@@ -67,10 +64,10 @@ const useUsers = (modal: any, refresh?: () => void) => {
             return false;
         }
     };
-    async function onAddUser(newUser: User): Promise<boolean> {
+    async function onAddItem(newItem: Company): Promise<boolean> {
         try {
             let status: boolean = false;
-            await addUser(newUser).then((response: any) => {
+            await addItem(newItem).then((response: any) => {
                 if (response.error !== undefined) {
                     
                     throw new Error(response.error.data.message);
@@ -92,29 +89,9 @@ const useUsers = (modal: any, refresh?: () => void) => {
             return false;
         }
     }
-    async function onChangePassword(changedPassword: ChangePassword): Promise<boolean> {
-        try {
-          
-          let status: boolean = false;
-          await changePasswordUser(changedPassword).then((response: any) => {
-            if(response.error !== undefined && response.error.status === 400){
-              throw new Error(response.error.data.message);
-            }
-            if(response.data.success){
-              status = true;
-              modal.success({title: t('success'), content:t('success_changed_pass')});
-            }
-          }).catch((error) => {
-            modal.error({title: t('error'), content: String(error.message)});
-          });
-          return status;
-        } catch (error: any) {
-          message.error(String(error));
-          return false;
-        }
-      }
 
-    return { onAddUser, onDeleteUser, onUpdateUser, onChangePassword }
+
+    return { onAddItem, onDeleteItem, onUpdateItem }
 
 }
-export { useUsers }
+export { useCompany };

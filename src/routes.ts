@@ -1,26 +1,15 @@
 export const routes = {
   login: '/login',
   home: '/',
-  reports: '/reports',
+  companies: '/companies',
   users: '/users',
   roles: '/roles',
-  employees: '/employees',
-  positions: '/positions',
-  appeals: '/appeals',
-  categories: '/categories',
-  government: {
-    index: '/governments',
-    item: (id = ':governmentId') => `/government/${id}`,
-  },
-  objectWorks: {
-    index: '/objectWorks',
-    item: (id = ':objectWorkId') => `/objectWorks/${id}`,
-  },
-  handbooks: {
-    index: '/handbooks',
-    regions: '/handbooks/regions',
-    category1: '/handbooks/categoryOne',
-    category2: '/handbooks/categoryTwo',
-    category3: '/handbooks/categoryThree',
+  orders: '/orders',
+
+  catalog: {
+    index: '/catalog',
+    productsList: '/catalog/productsList',
+    item: (id = ':productId') => `/catalog/productsList/${id}`, 
+    priceList: '/catalog/priceList',
   },
 }

@@ -39,9 +39,9 @@ export const ChangePasswordModal = (props: IProps) => {
   }
   function setEntityFromFields(): ChangePassword {
     let changePass = new ChangePassword();
-    changePass.userId = rootStore.getState().authSlice.user.id;
-    changePass.oldPassword = form.getFieldValue(FormField.old_password);
-    changePass.newPassword = form.getFieldValue(FormField.new_password);
+    // changePass.userId = rootStore.getState().authSlice.user.id;
+    // changePass.oldPassword = form.getFieldValue(FormField.old_password);
+    // changePass.newPassword = form.getFieldValue(FormField.new_password);
     return changePass;
   }
 
