@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useAddOrdersMutation, useDeleteOrdersMutation, useEditOrdersMutation } from "../../redux/api/endpoints/ordersApi";
-import { Orders } from "../../models/orders";
+import { Order } from "../../models/order";
 
 const useOrders = (modal: any, refresh?: () => void) => {
     const { t } = useTranslation()
@@ -9,7 +9,7 @@ const useOrders = (modal: any, refresh?: () => void) => {
     const [editItem] = useEditOrdersMutation();
     const [deleteItem] = useDeleteOrdersMutation();
 
-    async function onDeleteItem(item: Orders) { 
+    async function onDeleteItem(item: Order) { 
         try {
             let status: boolean = false;
             confirm({
@@ -42,7 +42,7 @@ const useOrders = (modal: any, refresh?: () => void) => {
         }
     };
 
-    async function onUpdateItem(editedItem: Orders): Promise<boolean> {
+    async function onUpdateItem(editedItem: Order): Promise<boolean> {
         try {
             let status: boolean = false;
             await editItem(editedItem).then((response: any) => {
@@ -66,7 +66,7 @@ const useOrders = (modal: any, refresh?: () => void) => {
         }
     };
 
-    async function onAddItem(newItem: Orders): Promise<boolean> {
+    async function onAddItem(newItem: Order): Promise<boolean> {
         try {
             let status: boolean = false;
             await addItem(newItem).then((response: any) => {

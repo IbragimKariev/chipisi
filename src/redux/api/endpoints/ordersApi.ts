@@ -1,11 +1,11 @@
-import { Orders } from "../../../models/orders";
+import { Order } from "../../../models/order";
 import { ResponseItems } from "../../../models/utils/responseItems";
 import { mainApi } from "../api";
 
 export const ordersApi = mainApi.injectEndpoints({
   endpoints: (builder) => ({
     getActiveOrders: builder.query<
-      ResponseItems<Orders[]>,
+      ResponseItems<Order[]>,
       { page?: number; pageSize?: number }
     >({
       query: ({ page = 1, pageSize = 20 } = {}) => ({
@@ -14,14 +14,14 @@ export const ordersApi = mainApi.injectEndpoints({
       }),
     }),
 
-    addOrders: builder.mutation<any, Orders>({
+    addOrders: builder.mutation<any, Order>({
       query: (body) => ({
         url: `/api/v1/orders`,
         method: "POST",
         body: JSON.stringify(body),
       }),
     }),
-    editOrders: builder.mutation<any, Orders>({
+    editOrders: builder.mutation<any, Order>({
       query: (body) => ({
         url: `/api/v1/orders/${body.id}`,
         method: "PUT",

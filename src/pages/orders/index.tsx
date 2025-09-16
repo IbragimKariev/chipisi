@@ -4,15 +4,15 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ContentContainer } from '../../components/content-container';
 import { Table } from '../../components/table';
-import { Orders } from '../../models/orders';
 
 import { OrdersFormModal } from './OrdersFormModal';
 import { useOrders } from './useOrders';
 import { useGetActiveOrdersQuery } from '../../redux/api/endpoints/ordersApi';
+import { Order } from '../../models/order';
 
 export const OrdersPage = () => {
   const { t } = useTranslation();
-  const [currentOrder, setCurrentOrder] = useState<Orders | null>(null);
+  const [currentOrder, setCurrentOrder] = useState<Order | null>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modal, contextHolder] = Modal.useModal();
   const [page, setPage] = useState(1);
@@ -25,7 +25,7 @@ export const OrdersPage = () => {
 
   const { onAddItem, onDeleteItem, onUpdateItem } = useOrders(modal, refetch);
 
-  const columns: TableColumnsType<Orders> = [
+  const columns: TableColumnsType<Order> = [
     {
       title: '#',
       key: 'index',

@@ -1,15 +1,18 @@
-import { Form, Input } from "antd";
+import { Col, Form, Input, Row } from "antd";
 import { useForm } from "antd/es/form/Form";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { DraggableModal } from "../../components/DraggableModal";
-import { Orders } from "../../models/orders";
+import { VariantsChoose } from "../../components/variants/variantsChoose";
+import SelectProduct from "../../components/selects/SelectProduct";
+import { OrderItem } from "../../models/orderItem";
+import { Order } from "../../models/order";
 
 interface IProps {
   show: boolean;
-  initialData: Orders | null;
+  initialData: Order | null;
   onHide: () => void;
-  onSubmit: (data: Orders) => Promise<boolean>;
+  onSubmit: (data: Order) => Promise<boolean>;
 }
 
 export const OrdersFormModal = ({
@@ -21,7 +24,8 @@ export const OrdersFormModal = ({
   const { t } = useTranslation();
   const [form] = useForm();
   const [loading, setLoading] = useState<boolean>(false);
-
+  const [productId, setProductId] =useState<number | null>(null);
+  const [variantList, setVariantList] =useState<OrderItem[] | null>(null);
   useEffect(() => {
     if (show) {
       form.resetFields();
@@ -35,15 +39,17 @@ export const OrdersFormModal = ({
 
   const onFinish = () => {
     setLoading(true);
-    const order = form.getFieldsValue() as Orders;
+    const order = form.getFieldsValue() as Order;
     if (initialData) {
       order.id = initialData.id;
     }
-    const data: Orders = {
+    const data: Order = {
       ...order,
+      items: variantList,
+      supplierId: 1
     };
     onSubmit(data)
-      .then((res) => {
+      .then((res) => { 
         if (res) {
           form.resetFields();
           onHide();
@@ -60,7 +66,7 @@ export const OrdersFormModal = ({
       visible={show}
       onCancel={onHide}
       onSubmit={() => form.submit()}
-      width={600}
+      width={1000}
       submitLoading={loading}
     >
       <Form
@@ -70,15 +76,31 @@ export const OrdersFormModal = ({
         form={form}
         onFinish={onFinish}
       >
-        <Form.Item
-          label={t("fields.name")}
-          name="name"
-          rules={[{ required: true, message: t("messages.fillTheField") }]}
-        >
-          <Input autoComplete="off" placeholder={t("fields.name")} />
-        </Form.Item>
-
-   
+        <Row gutter={16}>
+          <Col span={6}>
+            <Form.Item
+              label={t("Продукт")}
+              // name="supplierId"
+              rules={[{ required: true, message: t("Продукт") }]}
+            >
+              <SelectProduct onChange={(e)=>{
+         
+                setProductId(e)
+              }}/>
+            </Form.Item>
+            <Form.Item
+              label={t("Валюта")}
+              name="currency"
+              rules={[{ required: true, message: t("Продукт") }]}
+            >
+              <Input autoComplete="off" placeholder={t("Заполнить!")} />
+            </Form.Item>
+          </Col>
+          <Col span={18}>
+          {productId ?           <VariantsChoose setVariantList={setVariantList} productId={productId}/>
+ : "Выберите продукт"}
+          </Col>
+        </Row>
       </Form>
     </DraggableModal>
   );
